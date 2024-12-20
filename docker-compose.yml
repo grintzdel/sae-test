@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www
+    environment:
+      APP_ENV: dev
+      APP_SECRET: 862899952fe09f358147e3f7e96ad786
