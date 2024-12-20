@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Web\Controller;
+namespace App\Controller;
 
 use App\Service\TreeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
