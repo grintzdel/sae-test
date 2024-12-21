@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\MlpService;
+use App\Service\MlpDisplayService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class MlpController extends AbstractController
 {
     #[Route('/mlp', name: 'Mlp')]
-    public function test(Request $request, MlpService $modelTestService): Response
+    public function test(Request $request, MlpDisplayService $modelTestService): Response
     {
         if ($request->isMethod('POST') && $request->files->get('image')) {
             $uploadedFile = $request->files->get('image');

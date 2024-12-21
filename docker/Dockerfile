@@ -22,6 +22,9 @@ RUN rm -rf /var/www/vendor && \
     php bin/console cache:clear && \
     php bin/console cache:warmup && \
     chown -R www-data:www-data /var/www
+
+RUN echo "memory_limit=-1" > /usr/local/etc/php/conf.d/memory-limit.ini
+RUN echo "max_execution_time=0" > /usr/local/etc/php/conf.d/execution-time-limit.ini
     
 WORKDIR /var/www/
 

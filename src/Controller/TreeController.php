@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\TreeService;
+use App\Service\TreeDisplayService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class TreeController extends AbstractController
 {
     #[Route('/tree', name: 'Tree')]
-    public function test(Request $request, TreeService $modelTestService): Response
+    public function test(Request $request, TreeDisplayService $modelTestService): Response
     {
         if ($request->isMethod('POST') && $request->files->get('image')) {
             $uploadedFile = $request->files->get('image');

@@ -4,30 +4,21 @@ namespace App\Service;
 
 use Rubix\ML\Datasets\Unlabeled;
 
-class TreeService
+class MlpDisplayService
 {
     private mixed $model;
-    const PATH_MODEL_TREE = __DIR__ . '/../../public/model_tree.rbx';
+    const PATH_MODEL_MLP = __DIR__ . '/../../public/mlp.rbx';
 
     public function __construct()
     {
-        $modelPath = self::PATH_MODEL_TREE;
+        $modelPath = self::PATH_MODEL_MLP;
 
         try {
             if (!file_exists($modelPath)) {
                 throw new \RuntimeException("Le fichier du modèle n'existe pas à l'emplacement spécifié : $modelPath");
             }
 
-            $modelContent = file_get_contents($modelPath);
-            if ($modelContent === false) {
-                throw new \RuntimeException("Erreur lors de la lecture du fichier du modèle.");
-            }
-
-            if (strlen($modelContent) === 0) {
-                throw new \RuntimeException("Le contenu du fichier du modèle est vide.");
-            }
-
-            $this->model = unserialize($modelContent);
+            $this->model = unserialize(file_get_contents($modelPath));
 
             if (!$this->model) {
                 throw new \RuntimeException("Erreur lors de la désérialisation du modèle.");
@@ -56,6 +47,7 @@ class TreeService
 
     private function prepareImage(string $imagePath): array
     {
+
         $imageInfo = getimagesize($imagePath);
         if ($imageInfo === false) {
             throw new \RuntimeException("Le fichier spécifié n'est pas une image valide : $imagePath");
@@ -68,7 +60,7 @@ class TreeService
             throw new \RuntimeException("L'image doit être de taille 28x28 pixels.");
         }
 
-        $image = @imagecreatefromstring(file_get_contents($imagePath));
+        $image = imagecreatefromstring(file_get_contents($imagePath));
         if (!$image) {
             throw new \RuntimeException("Impossible de charger l'image : $imagePath");
         }
