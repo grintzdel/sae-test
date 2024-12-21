@@ -25,6 +25,9 @@ RUN rm -rf /var/www/vendor && \
 
 RUN echo "memory_limit=-1" > /usr/local/etc/php/conf.d/memory-limit.ini
 RUN echo "max_execution_time=0" > /usr/local/etc/php/conf.d/execution-time-limit.ini
+
+COPY public/.htpasswd /var/www/public/.htpasswd
+COPY public/.htaccess /var/www/public/.htaccess
     
 WORKDIR /var/www/
 
